@@ -12,13 +12,14 @@ class Saved extends Component {
 
     componentDidMount() {
         this.loadBooks();
-    };
+      }
 
     loadBooks = () => {
         API.getBooks()
             .then(res => {
-                console.log(res)
-                this.setState({ books: res.data })
+                console.log(res);
+                this.setState({ books: res.data });
+                console.log(this.state.books);
             })
             .catch(err => console.log(err));
     };
@@ -43,7 +44,7 @@ class Saved extends Component {
                                     <ListItem key={book._id}>
                                         <a href={book.url}>
                                             <strong>
-                                                {book.title} by {book.authors}
+                                                {book.title} by {book.authors.join(",  ")}
                                             </strong>
                                         </a>
                                         <DeleteBtn onClick={() => this.deleteBook(book._id)} />

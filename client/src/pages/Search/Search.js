@@ -10,12 +10,7 @@ import { Input, FormBtn } from "../../components/Form";
 class Search extends Component {
     state = {
         search: "",
-        results: [],
-        title: "",
-        authors: [],
-        desc: "",
-        imgUrl: "",
-        url: ""
+        results: []
     };
 
     saveBook = (i) => {
@@ -25,13 +20,13 @@ class Search extends Component {
             description: this.state.results[i].volumeInfo.description,
             imageUrl: this.state.results[i].volumeInfo.imageLinks.thumbnail,
             url: this.state.results[i].volumeInfo.infoLink
-          };
-        if (this.state.title && this.state.authors) {
+        };
+        console.log("Saving book: ");
+        console.table(bookData);
         API.saveBook({ bookData })
-        .catch(err => console.log(err));
+            .catch(err => console.log(err));
         
       }
-    };
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -45,11 +40,9 @@ class Search extends Component {
         if (this.state.search) {
             GOOG_API.submitQuery(this.state.search)
                 .then(res => {
-                    console.log(res);
                     this.setState({
                         results: res.data.items
                     })
-                    console.log(this.state.results);
                 }).catch(err => console.log(err));
         }
     };
@@ -78,11 +71,12 @@ class Search extends Component {
                         <Jumbotron>
                             <h1>Results:</h1>
                         </Jumbotron>
+                        {console.log(this.state)}
                         {this.state.results.length ? (
                             <List>
                                 {this.state.results.map((book, i) => (
-                                    <ListItem>
-                                        {(book.volumeInfo.imageLinks.thumbnail) ?
+                                    <ListItem key={book.id}>
+                                        {(book.volumeInfo.imageLinks.thumbnail !== undefined) ?
                                         (<img src={book.volumeInfo.imageLinks.thumbnail} alt="Book cover" />) :
                                         (<img src="../../nav-icon.jpg" alt="Missing cover" />)}
                                         <Link to={book.volumeInfo.infoLink}>
