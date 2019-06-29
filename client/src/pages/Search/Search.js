@@ -13,19 +13,21 @@ class Search extends Component {
         results: []
     };
 
-    saveBook = (i) => {
+    saveBook = (id) => {
+        const book = this.state.results.find(book => book.id === id);
+        console.log(book);
         const bookData = {
-            title: this.state.results[i].volumeInfo.title,
-            authors: this.state.results[i].volumeInfo.authors,
-            description: this.state.results[i].volumeInfo.description,
-            imageUrl: this.state.results[i].volumeInfo.imageLinks.thumbnail,
-            url: this.state.results[i].volumeInfo.infoLink
+            googleId: book.id,
+            title: book.volumeInfo.title,
+            url: book.volumeInfo.infoLink,
+            authors: book.volumeInfo.authors,
+            description: book.volumeInfo.description,
+            imageUrl: book.volumeInfo.imageLinks.thumbnail
         };
         console.log("Saving book: ");
         console.table(bookData);
         API.saveBook({ bookData })
             .catch(err => console.log(err));
-        
       }
 
     handleInputChange = event => {
@@ -71,7 +73,6 @@ class Search extends Component {
                         <Jumbotron>
                             <h1>Results:</h1>
                         </Jumbotron>
-                        {console.log(this.state)}
                         {this.state.results.length ? (
                             <List>
                                 {this.state.results.map((book, i) => (
@@ -85,7 +86,8 @@ class Search extends Component {
                                             </strong>
                                         </Link>
                                         <p>{book.description}</p>
-                                        <button onClick={() => this.saveBook(i)}>Save to list</button>
+                                        { console.log(i) }
+                                        <button onClick={() => this.saveBook(book.id)}>Save to list</button>
                                     </ListItem>                
                                 ))}
                             </List>
