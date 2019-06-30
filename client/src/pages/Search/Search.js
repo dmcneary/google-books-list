@@ -24,10 +24,13 @@ class Search extends Component {
             description: book.volumeInfo.description,
             imageUrl: book.volumeInfo.imageLinks.thumbnail
         };
+        if (!bookData.description) {
+            bookData.description = "(no description provided)"
+        }
+        API.saveBook(bookData)
+            .catch(err => console.log(err));
         console.log("Saving book: ");
         console.table(bookData);
-        API.saveBook({ bookData })
-            .catch(err => console.log(err));
       }
 
     handleInputChange = event => {
