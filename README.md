@@ -5,8 +5,8 @@ Deployed on heroku here:
 https://google-books-list.herokuapp.com/  
 
 ![screenshot](./git-images/screen1.png)  
-![screenshot](./git-images/screen1.png)  
-![screenshot](./git-images/screen1.png)  
+![screenshot](./git-images/screen2.png)  
+![screenshot](./git-images/screen3png)  
 
 ### Technologies used:  
 * Mongo DB with Mongoose.js
