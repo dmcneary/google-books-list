@@ -2,10 +2,6 @@
   "name": "google-books-list",
   "version": "1.0.0",
   "description": "A Google Books search tool built on the MERN stack",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:dmcneary/google-books-list.git"
-  },
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -17,15 +13,11 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-<<<<<<< HEAD
   "author": "David McNeary",
   "repository": {
     "type" : "git",
     "url" : "https://github.com/dmcneary/google-books-list"
   },
-=======
-  "author": "David McNeary (https://dmcneary.github.io/)",
->>>>>>> 21f6e088b3a12f5780470050ae005fef45403bbb
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.6.1",
