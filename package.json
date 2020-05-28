@@ -15,8 +15,8 @@
   },
   "author": "David McNeary",
   "repository": {
-    "type" : "git",
-    "url" : "git@github.com:dmcneary/google-books-list.git"
+    "type": "git",
+    "url": "git@github.com:dmcneary/google-books-list.git"
   },
   "license": "ISC",
   "devDependencies": {
